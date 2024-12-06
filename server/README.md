@@ -12,6 +12,12 @@
 - Password reset.
 - Organized and understandable app structure.
 
+<div style="display: flex; flex-direction: row; justify-content: space-between; gap: 10px; margin-bottom: 10px">
+    <img src="../gitHub/imgs/reset_password_email.png">
+    <img src="../gitHub/imgs/reset_password_form.png">
+    <img src="../gitHub/imgs/verify_account_email.png">
+    <img src="../gitHub/imgs/verify_success.png">
+</div>
 
 ## Tech Stack Client
 
