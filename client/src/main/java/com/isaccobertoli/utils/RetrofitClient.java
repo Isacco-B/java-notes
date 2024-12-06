@@ -16,7 +16,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
     private static final Properties properties = PropertiesUtil.loadProperties("application.properties");
-    private static final String BASE_URL = properties.getProperty("BASE_URL");
+    private static final String BASE_URL = properties.getProperty("BASE_URL").endsWith("/")
+            ? properties.getProperty("BASE_URL")
+            : properties.getProperty("BASE_URL") + "/";
 
     public static ApiService createService() {
         OkHttpClient client = new OkHttpClient.Builder()
