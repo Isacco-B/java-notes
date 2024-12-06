@@ -5,7 +5,8 @@ import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
 public class EmailUtil {
-    private static String serverUrl = EnvUtil.getEnv("SERVER_URL");
+    private static String serverUrl = EnvUtil.getEnv("SERVER_URL").endsWith("/") ? EnvUtil.getEnv("SERVER_URL")
+            .substring(0, EnvUtil.getEnv("SERVER_URL").length() - 1) : EnvUtil.getEnv("SERVER_URL");
     private static String serverPort = EnvUtil.getEnv("SERVER_PORT");
 
     private static void sendEmail(String to, String subject, String htmlMessage, String plainTextMessage)
@@ -25,11 +26,11 @@ public class EmailUtil {
     }
 
     public static void sendVerificationEmail(String to, String token) throws EmailException {
-        String verificationLink = serverUrl + ":" + serverPort + "/api/auth/new-verification/" + token;
-
         if ("development".equalsIgnoreCase(EnvUtil.getEnv("MODE"))) {
+            String verificationLink = serverUrl + ":" + serverPort + "/api/auth/new-verification/" + token;
             System.out.println("Verification link: " + verificationLink);
         } else {
+            String verificationLink = serverUrl + "/api/auth/new-verification/" + token;
             String subject = "Confirm your identity";
             String htmlMessage = "<p>Click <a href='" + verificationLink + "'>here</a> to verify your account.</p>";
             String plainTextMessage = "Click here to verify your account:" + verificationLink;
@@ -39,12 +40,12 @@ public class EmailUtil {
     }
 
     public static void sendPasswordResetEmail(String to, String token) throws EmailException {
-        String passwordResetLink = serverUrl + ":" + serverPort + "/api/auth/reset-password-confirm/"
-                + token;
-
         if ("development".equalsIgnoreCase(EnvUtil.getEnv("MODE"))) {
+            String passwordResetLink = serverUrl + ":" + serverPort + "/api/auth/reset-password-confirm/"
+                    + token;
             System.out.println("Password reset link: " + passwordResetLink);
         } else {
+            String passwordResetLink = serverUrl + "/api/auth/reset-password-confirm/" + token;
             String subject = "Password Reset Request for NotesApp";
             String htmlMessage = "<p>Click <a href='" + passwordResetLink + "'>here</a> to reset your password.</p>";
             String plainTextMessage = "Click here to reset your password:" + passwordResetLink;
