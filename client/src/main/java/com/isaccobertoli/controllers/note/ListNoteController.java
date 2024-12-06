@@ -26,7 +26,7 @@ import retrofit2.Response;
 
 public class ListNoteController implements NoteActionListener {
     private final ListNoteView noteListView;
-    private final ApiService apiService = RetrofitClient.createService();
+    private final ApiService apiService = RetrofitClient.getService();
 
     public ListNoteController() {
         this.noteListView = new ListNoteView();
@@ -58,12 +58,14 @@ public class ListNoteController implements NoteActionListener {
     }
 
     private void fetchNotes() {
+        noteListView.showLoader(true);
         Call<GenericResponse<NoteListResponse>> call = apiService.getNotes();
         call.enqueue(new Callback<GenericResponse<NoteListResponse>>() {
             @Override
             public void onResponse(Call<GenericResponse<NoteListResponse>> call,
                     Response<GenericResponse<NoteListResponse>> response) {
                 Platform.runLater(() -> {
+                    noteListView.showLoader(false);
                     if (response.isSuccessful() && response.body() != null) {
                         List<NoteDTO> notes = response.body().getData().getNotes();
                         noteListView.updateNotes(notes);
@@ -77,15 +79,17 @@ public class ListNoteController implements NoteActionListener {
                         } catch (Exception e) {
                             showError("Something went wrong!\n" + response.message());
                         }
-                        List<NoteDTO> notes = null;
-                        noteListView.updateNotes(notes);
+                        noteListView.updateNotes(null);
                     }
                 });
             }
 
             @Override
             public void onFailure(Call<GenericResponse<NoteListResponse>> call, Throwable t) {
-                Platform.runLater(() -> showError("Something went wrong!\n " + t.getMessage()));
+                Platform.runLater(() -> {
+                    noteListView.showLoader(false);
+                    showError("Something went wrong!\n " + t.getMessage());
+                });
             }
         });
     }

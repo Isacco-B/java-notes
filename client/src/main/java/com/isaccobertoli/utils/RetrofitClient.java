@@ -2,6 +2,7 @@ package com.isaccobertoli.utils;
 
 import java.io.IOException;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import com.isaccobertoli.controllers.auth.LoginController;
 import com.isaccobertoli.services.ApiService;
@@ -15,46 +16,60 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
+
     private static final Properties properties = PropertiesUtil.loadProperties("application.properties");
     private static final String BASE_URL = properties.getProperty("BASE_URL").endsWith("/")
             ? properties.getProperty("BASE_URL")
             : properties.getProperty("BASE_URL") + "/";
 
-    public static ApiService createService() {
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(new Interceptor() {
-                    @Override
-                    public Response intercept(Chain chain) throws IOException {
-                        Request original = chain.request();
-                        Request.Builder requestBuilder = original.newBuilder()
-                                .header("Accept", "application/json");
+    private static Retrofit retrofitInstance;
+    private static ApiService apiServiceInstance;
 
-                        String token = TokenStorage.loadToken();
-                        if (token != null) {
-                            requestBuilder.header("Authorization", "Bearer " + token);
-                        }
+    private RetrofitClient() {
+    }
 
-                        Request request = requestBuilder.method(original.method(), original.body()).build();
-                        Response response = chain.proceed(request);
+    public static synchronized ApiService getService() {
+        if (apiServiceInstance == null) {
+            if (retrofitInstance == null) {
+                OkHttpClient client = new OkHttpClient.Builder()
+                        .connectTimeout(20, TimeUnit.SECONDS)
+                        .readTimeout(30, TimeUnit.SECONDS)
+                        .writeTimeout(30, TimeUnit.SECONDS)
+                        .addInterceptor(new Interceptor() {
+                            @Override
+                            public Response intercept(Chain chain) throws IOException {
+                                Request original = chain.request();
+                                Request.Builder requestBuilder = original.newBuilder()
+                                        .header("Accept", "application/json");
 
-                        if (response.code() == 401) {
-                            Platform.runLater(() -> {
-                                TokenStorage.clearToken();
-                                SceneManager.switchScene(new LoginController().getScene(), "Login");
-                            });
-                        }
+                                String token = TokenStorage.loadToken();
+                                if (token != null) {
+                                    requestBuilder.header("Authorization", "Bearer " + token);
+                                }
 
-                        return response;
-                    }
-                })
-                .build();
+                                Request request = requestBuilder.method(original.method(), original.body()).build();
+                                Response response = chain.proceed(request);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+                                if (response.code() == 401) {
+                                    Platform.runLater(() -> {
+                                        TokenStorage.clearToken();
+                                        SceneManager.switchScene(new LoginController().getScene(), "Login");
+                                    });
+                                }
 
-        return retrofit.create(ApiService.class);
+                                return response;
+                            }
+                        })
+                        .build();
+
+                retrofitInstance = new Retrofit.Builder()
+                        .baseUrl(BASE_URL)
+                        .client(client)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+            }
+            apiServiceInstance = retrofitInstance.create(ApiService.class);
+        }
+        return apiServiceInstance;
     }
 }

@@ -20,7 +20,7 @@ import retrofit2.Response;
 
 public class CreateNoteController {
     private final CreateNoteView createNoteView;
-    private final ApiService apiService = RetrofitClient.createService();
+    private final ApiService apiService = RetrofitClient.getService();
 
     public CreateNoteController() {
         this.createNoteView = new CreateNoteView();

@@ -21,7 +21,7 @@ import retrofit2.Response;
 
 public class LoginController {
     private final LoginView loginView;
-    private final ApiService apiService = RetrofitClient.createService();
+    private final ApiService apiService = RetrofitClient.getService();
 
     public LoginController() {
         this.loginView = new LoginView();

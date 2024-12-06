@@ -20,7 +20,7 @@ import retrofit2.Response;
 
 public class RegisterController {
     private final RegisterView registerView;
-    private final ApiService apiService = RetrofitClient.createService();
+    private final ApiService apiService = RetrofitClient.getService();
 
     public RegisterController() {
         this.registerView = new RegisterView();

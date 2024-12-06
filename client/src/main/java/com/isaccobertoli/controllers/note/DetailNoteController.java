@@ -22,7 +22,7 @@ import retrofit2.Response;
 public class DetailNoteController {
     private final String noteId;
     private final DetailNoteView detailNoteView;
-    private final ApiService apiService = RetrofitClient.createService();
+    private final ApiService apiService = RetrofitClient.getService();
 
     public DetailNoteController(String noteId) {
         this.noteId = noteId;

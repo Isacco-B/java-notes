@@ -19,7 +19,7 @@ import retrofit2.Response;
 
 public class ResetPasswordController {
     private final ResetPasswordView resetPasswordView;
-    private final ApiService apiService = RetrofitClient.createService();
+    private final ApiService apiService = RetrofitClient.getService();
 
     public ResetPasswordController() {
         this.resetPasswordView = new ResetPasswordView();
