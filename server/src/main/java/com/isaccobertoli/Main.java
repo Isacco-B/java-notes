@@ -26,7 +26,6 @@ import io.javalin.http.staticfiles.Location;
 
 public class Main {
     public static void main(String[] args) {
-        String serverUrl = Objects.requireNonNullElse(EnvUtil.getEnv("SERVER_URL"), "http://localhost/");
         int serverPort = Objects.requireNonNullElse(Integer.parseInt(EnvUtil.getEnv("SERVER_PORT")), 7000);
 
         System.out.println("Checking database connection...");
@@ -69,9 +68,9 @@ public class Main {
 
         ExceptionHandlersUtil.register(app);
 
-        app.start(serverUrl, serverPort);
+        app.start(serverPort);
 
-        System.out.println("Server started at " + serverUrl + ":" + serverPort);
+        System.out.println("Server started at localhost" + ":" + serverPort);
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.out.println("Shutting down the server...");
