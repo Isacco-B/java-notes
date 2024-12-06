@@ -2,7 +2,7 @@
 
 Java Notes is a cross-platform application that enables users to securely create, manage, and organize their personal notes. The project consists of two main components: a client-side desktop application built with JavaFX and a server-side RESTful API that handles the logic and database management.
 
-The client provides an intuitive user interface (UI) with CRUD (Create, Read, Update, Delete) operations for managing notes, while the server implements JWT-based authentication and advanced security features to ensure user data privacy and integrity.
+The client provides an intuitive user interface (UI) with CRUD (Create, Read, Update, Delete) operations for managing notes, while the server implements JWT-based authentication and advanced security features to ensure user data privacy and integrity
 
 
 ## Documentation
