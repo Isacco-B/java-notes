@@ -1,6 +1,6 @@
 # java-notes-api
 
-- Java Notes is a RESTful application designed to create, manage, and secure personal notes. The project leverages modern technologies such as Java, Javalin, and MongoDB, implementing JWT-based authentication and advanced security features like account verification and password reset via email..
+- Java Notes is a RESTful application designed to create, manage, and secure personal notes. The project leverages modern technologies such as Java, Javalin, and MongoDB, implementing JWT-based authentication and advanced security features like account verification and password reset via email.
 
 
 ## Features
@@ -13,7 +13,7 @@
 - Organized and understandable app structure.
 
 
-## Tech Stack Client
+## Tech Stack Server
 
 - **Backend:** Java, Javalin, java-jwt, commons-email
 - **Database:** MongoDB
@@ -35,7 +35,7 @@
 
 ## Images
 
-<div style="display: flex; flex-direction: row; justify-content: space-between; gap: 10px; margin-bottom: 10px">
+<div style="display: flex; flex-direction: column; justify-content: space-between; gap: 10px; margin-bottom: 10px">
     <img src="../gitHub/imgs/reset_password_email.png">
     <img src="../gitHub/imgs/reset_password_form.png">
     <img src="../gitHub/imgs/verify_account_email.png">
