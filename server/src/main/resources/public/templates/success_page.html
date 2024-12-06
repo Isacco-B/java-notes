@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" />
+    <title>NotesApp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+      function getQueryParam(param) {
+        const params = new URLSearchParams(window.location.search);
+        return params.get(param);
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const title = getQueryParam("title") || "Success";
+        const message = getQueryParam("message");
+
+        document.getElementById("success-title").textContent = title;
+        document.getElementById("success-message").textContent = message;
+      });
+    </script>
+  </head>
+  <body class="bg-[#f7fbfd]">
+    <section class="text-gray-600 body-font text-center">
+      <div class="container px-5 py-24 mx-auto">
+        <div
+          class="max-w-md bg-white flex flex-col mx-auto w-full mt-8 rounded-md shadow-lg p-6"
+        >
+          <svg
+          version="1.1"
+          id="Capa_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 50 50"
+          xml:space="preserve"
+          fill="#000000"
+          width="80px"
+          height="80px"
+          class="mx-auto"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <circle style="fill: #25ae88" cx="25" cy="25" r="25"></circle>
+            <polyline
+              style="
+                fill: none;
+                stroke: #ffffff;
+                stroke-width: 2;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                stroke-miterlimit: 10;
+              "
+              points=" 38,15 22,33 12,25 "
+            ></polyline>
+          </g>
+        </svg>
+          <h2 class="text-gray-900 text-lg mb-1 font-medium title-font mt-2" id="success-title"></h2>
+          <p class="leading-relaxed mb-2 text-gray-600" id="success-message"></p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
