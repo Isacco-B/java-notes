@@ -25,7 +25,7 @@ public class EmailUtil {
     }
 
     public static void sendVerificationEmail(String to, String token) throws EmailException {
-        String verificationLink = "http://" + serverUrl + ":" + serverPort + "/api/auth/new-verification/" + token;
+        String verificationLink = serverUrl + ":" + serverPort + "/api/auth/new-verification/" + token;
 
         if ("development".equalsIgnoreCase(EnvUtil.getEnv("MODE"))) {
             System.out.println("Verification link: " + verificationLink);
@@ -39,7 +39,7 @@ public class EmailUtil {
     }
 
     public static void sendPasswordResetEmail(String to, String token) throws EmailException {
-        String passwordResetLink = "http://" + serverUrl + ":" + serverPort + "/api/auth/reset-password-confirm/"
+        String passwordResetLink = serverUrl + ":" + serverPort + "/api/auth/reset-password-confirm/"
                 + token;
 
         if ("development".equalsIgnoreCase(EnvUtil.getEnv("MODE"))) {
