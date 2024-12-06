@@ -12,12 +12,6 @@
 - Password reset.
 - Organized and understandable app structure.
 
-<div style="display: flex; flex-direction: row; justify-content: space-between; gap: 10px; margin-bottom: 10px">
-    <img src="../gitHub/imgs/reset_password_email.png">
-    <img src="../gitHub/imgs/reset_password_form.png">
-    <img src="../gitHub/imgs/verify_account_email.png">
-    <img src="../gitHub/imgs/verify_success.png">
-</div>
 
 ## Tech Stack Client
 
@@ -27,14 +21,27 @@
 
 
 ### Prerequisites
+
 - **Java 17**: This project requires Java version 17 or higher.
 - **Maven**: You need to have Maven installed to build and run the project.
 - **MongoDB**: You need to have a running MongoDB instance to connect to.
 
 
 ## Demo
+
 - You can use https://demo16.isaccobertoli.com/api as base_url to interact with the API.
 - You can use https://github.com/Isacco-B/java-notes/tree/main/client as client to interact with the API.
+
+
+## Images
+
+<div style="display: flex; flex-direction: row; justify-content: space-between; gap: 10px; margin-bottom: 10px">
+    <img src="../gitHub/imgs/reset_password_email.png">
+    <img src="../gitHub/imgs/reset_password_form.png">
+    <img src="../gitHub/imgs/verify_account_email.png">
+    <img src="../gitHub/imgs/verify_success.png">
+</div>
+
 
 ### API Endpoints
 
@@ -59,6 +66,7 @@
 | --- | --- | --- | --- |
 | GET | /api/users/{userId} | Returns a specific user for the authenticated user. | userId: string |
 | DELETE | /api/users/{userId} | Delete a specific user for the authenticated user. | userId: string |
+
 
 ## Getting Up and Running Locally
 
