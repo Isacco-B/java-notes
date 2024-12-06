@@ -23,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
@@ -34,6 +35,7 @@ public class ListNoteView {
     private static final int MAX_WIDTH = 1300;
     private StackPane rootContainer = new StackPane();
     private ModalPane modalPane = new ModalPane();
+    private ProgressIndicator progressIndicator;
     private FlowPane flowPane;
     private Button createNoteBtn;
     private Button logoutButton;
@@ -65,8 +67,14 @@ public class ListNoteView {
         listNoteContainer.setTop(setupListNoteHeader());
         listNoteContainer.setCenter(scrollPane);
 
+        progressIndicator = new ProgressIndicator();
+        progressIndicator.setVisible(false);
+
+        StackPane progressContainer = new StackPane(listNoteContainer, progressIndicator);
+        progressContainer.setAlignment(Pos.CENTER);
+
         mainContainer.setTop(setupUserHeader());
-        mainContainer.setCenter(listNoteContainer);
+        mainContainer.setCenter(progressContainer);
 
         rootContainer.getChildren().addAll(mainContainer, modalPane);
         rootContainer.getStyleClass().add(Styles.BG_INSET);
@@ -179,6 +187,10 @@ public class ListNoteView {
             errorMessage.getStyleClass().add(Styles.TEXT_MUTED);
             flowPane.getChildren().add(errorMessage);
         }
+    }
+
+    public void showLoader(boolean visible) {
+        progressIndicator.setVisible(visible);
     }
 
     public Button getCreateNoteButton() {
