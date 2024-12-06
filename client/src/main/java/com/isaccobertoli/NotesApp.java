@@ -38,7 +38,10 @@ public class NotesApp extends Application {
         primaryStage.setMaximized(true);
         primaryStage.setMinHeight(HEIGHT);
         primaryStage.setMinWidth(WIDTH);
-        primaryStage.setOnCloseRequest(t -> Platform.exit());
+        primaryStage.setOnCloseRequest(event -> {
+            Platform.exit();
+            System.exit(0);
+        });
         SceneManager.setPrimaryStage(primaryStage);
         SceneManager.switchScene(new ListNoteController().getScene(), "Game preparation");
 
