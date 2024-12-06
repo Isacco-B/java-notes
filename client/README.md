@@ -25,7 +25,7 @@
 
 
 ## Demo
-- You can download the application from https://github.com/Isacco-B/java-notes/releases/tag/1.0.0
+- You can download the application from https://github.com/Isacco-B/java-notes/releases
 
 
 ### Images
