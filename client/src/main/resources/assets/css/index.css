@@ -1,0 +1,37 @@
+.root {
+  -color-danger-fg: rgb(250, 91, 83);
+  -color-danger-emphasis: rgb(250, 91, 83);
+  -color-base-0-opacity: rgba(242, 242, 247, 0.308);
+}
+
+.form-card>.container {
+  -fx-padding: 20px 10px 20px 10px;
+  -fx-border-radius: 10px;
+  -fx-background-radius: 10px;
+}
+
+.text-input {
+  -fx-background-insets: 0, 0.8px;
+  -fx-background-radius: 8px;
+  -fx-padding: 10px;
+}
+
+.button {
+  -color-button-border-focused: transparent;
+  -fx-cursor: hand;
+}
+
+.button:default,
+.button.accent {
+  -color-button-border-hover: transparent;
+  -color-button-bg-focused: -color-accent-emphasis;
+  -color-button-fg-focused: -color-fg-emphasis;
+  -color-button-border-focused: transparent;
+  -color-button-bg-pressed: -color-accent-emphasis;
+  -color-button-fg-pressed: -color-fg-emphasis;
+  -color-button-border-pressed: transparent;
+}
+
+.button.button-outlined {
+  -color-button-bg-hover: -color-base-0;
+}
