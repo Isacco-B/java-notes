@@ -1,6 +1,7 @@
 package com.isaccobertoli.utils;
 
 import java.io.IOException;
+import java.util.Properties;
 
 import com.isaccobertoli.controllers.auth.LoginController;
 import com.isaccobertoli.services.ApiService;
@@ -14,8 +15,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-
-    private static final String BASE_URL = "http://localhost:7000/api/";
+    private static final Properties properties = PropertiesUtil.loadProperties("application.properties");
+    private static final String BASE_URL = properties.getProperty("BASE_URL");
 
     public static ApiService createService() {
         OkHttpClient client = new OkHttpClient.Builder()
