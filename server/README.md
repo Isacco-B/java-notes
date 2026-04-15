@@ -58,8 +58,8 @@
 | GET | /api/notes | Returns all notes for the authenticated user. |
 | GET | /api/notes/{noteId} | Returns a specific note for the authenticated user. | noteId: string |
 | POST | /api/notes | Creates a new note for the authenticated user. | title: string, content: string |
-| PUT | /api/courses/{noteId} | Updates a note for the authenticated user. |  title: string, content: string |
-| DELETE | /api/courses/{noteId} | Deletes a note for the authenticated user. | noteId: string |
+| PUT | /api/{noteId} | Updates a note for the authenticated user. |  title: string, content: string |
+| DELETE | /api/{noteId} | Deletes a note for the authenticated user. | noteId: string |
 
 ## User | Requires Authorization Header with Bearer Token
 | Method | Endpoint | Description | Parameters |
